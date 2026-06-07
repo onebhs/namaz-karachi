@@ -403,10 +403,9 @@ body{
 
   <!-- TABS -->
   <div class="tab-bar">
-    <button class="tab-btn active" onclick="switchTab('namaz')">🕌 نماز</button>
-    <button class="tab-btn" onclick="switchTab('qibla')">🧭 قبلہ</button>
-    <button class="tab-btn" onclick="switchTab('quran')">📖 قرآن</button>
-    <button class="tab-btn" onclick="switchTab('dua')">🤲 دعائیں</button>
+    <button class="tab-btn active" onclick="switchTab('namaz',this)">🕌 نماز</button>
+    <button class="tab-btn" onclick="switchTab('quran',this)">📖 قرآن</button>
+    <button class="tab-btn" onclick="switchTab('dua',this)">🤲 دعائیں</button>
   </div>
 
   <!-- TAB: NAMAZ -->
@@ -463,58 +462,33 @@ body{
       </div>
     </div>
 
-    <!-- Ramadan Countdown -->
-    <div class="ramadan-card">
-      <div class="ramadan-icon">🌙</div>
-      <div class="ramadan-title">رمضان المبارک</div>
-      <div id="ramadanContent">
-        <div class="ramadan-days"><span>...</span></div>
+    <!-- Ramadan Countdown — compact -->
+    <div class="ramadan-card" style="padding:0.6rem 1.2rem;display:flex;align-items:center;justify-content:space-between;text-align:left;">
+      <div style="display:flex;align-items:center;gap:0.5rem;">
+        <span style="font-size:1.3rem;">🌙</span>
+        <div class="ramadan-title" style="margin:0;font-size:0.82rem;">رمضان المبارک</div>
+      </div>
+      <div id="ramadanContent" style="text-align:left;">
+        <div class="ramadan-days" style="font-size:1.2rem;"><span>...</span></div>
       </div>
     </div>
 
-    <!-- Weather -->
-    <div class="weather-card" id="weatherCard">
-      <div class="weather-header">
-        <div class="weather-title">کراچی — موسمِ حال</div>
-        <div class="weather-updated" id="weatherUpdated">loading...</div>
+    <!-- Weather — compact -->
+    <div class="weather-card" id="weatherCard" style="padding:0.7rem 1.2rem;">
+      <div class="weather-header" style="margin-bottom:0;cursor:pointer;" onclick="toggleWeather()">
+        <div class="weather-title">🌤️ کراچی موسم</div>
+        <div style="display:flex;align-items:center;gap:0.5rem;">
+          <div class="weather-updated" id="weatherUpdated">loading...</div>
+          <span id="weatherToggleIcon" style="color:var(--text-dim);font-size:0.8rem;">▼</span>
+        </div>
       </div>
-      <div id="weatherBody"><div class="weather-loading">⏳ موسم آ رہا ہے...</div></div>
+      <div id="weatherBody" style="display:none;margin-top:0.7rem;"><div class="weather-loading">⏳ موسم آ رہا ہے...</div></div>
     </div>
 
     <!-- Prayer List -->
     <div id="prayerSections"></div>
 
   </div><!-- /tab-namaz -->
-
-  <!-- TAB: QIBLA -->
-  <div class="tab-content" id="tab-qibla">
-    <div class="qibla-card">
-      <div class="qibla-title">سمتِ قبلہ — کراچی</div>
-      <div class="compass-wrap">
-        <div class="compass-ring">
-          <span class="compass-e">E</span>
-          <span class="compass-w">W</span>
-          <!-- Qibla arrow (gold) -->
-          <div class="qibla-arrow" id="qiblaArrow" style="transform:rotate(292deg)">
-            <div class="qibla-arrow-head"></div>
-          </div>
-          <!-- Compass needle (red/grey N-S) -->
-          <div class="compass-needle" id="compassNeedle" style="transform:rotate(0deg)">
-            <div class="needle-north"></div>
-            <div class="needle-south"></div>
-          </div>
-        </div>
-      </div>
-      <div class="qibla-degree" id="qiblaDeg">292°</div>
-      <div class="qibla-sub">کراچی سے مکہ مکرمہ کی سمت</div>
-      <button class="qibla-btn" onclick="startCompass()">📱 موبائل کمپاس چالو کریں</button>
-      <div class="qibla-note" id="qiblaNote">
-        ⬆️ سنہری تیر قبلے کی سمت ہے<br>
-        🔴 سرخ تیر شمال (North) کی طرف ہے<br>
-        موبائل کمپاس بٹن دبائیں تو تیر خود گھومے گا
-      </div>
-    </div>
-  </div>
 
   <!-- TAB: QURAN -->
   <div class="tab-content" id="tab-quran">
@@ -539,6 +513,13 @@ body{
       </div>
       <div class="arabic-text" style="margin-top:1rem;">
         هُوَ اللَّهُ الْخَٰلِقُ الْبَارِئُ الْمُصَوِّرُ ۖ لَهُ الْأَسْمَآءُ الْحُسْنَىٰ ۚ يُسَبِّحُ لَهُۥ مَا فِى السَّمَٰوَٰتِ وَالْأَرْضِ ۖ وَهُوَ الْعَزِيزُ الْحَكِيمُ <span class="ayat-num">24</span>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <div class="content-title">📖 آیت الکرسی</div>
+      <div class="arabic-text">
+        اللَّهُ لَآ إِلَٰهَ إِلَّا هُوَ الْحَىُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُۥ سِنَةٌ وَلَا نَوْمٌ ۚ لَّهُۥ مَا فِى السَّمَٰوَٰتِ وَمَا فِى الْأَرْضِ ۗ مَن ذَا الَّذِى يَشْفَعُ عِندَهُۥٓ إِلَّا بِإِذْنِهِۦ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَىْءٍ مِّنْ عِلْمِهِۦٓ إِلَّا بِمَا شَآءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَٰوَٰتِ وَالْأَرْضَ ۖ وَلَا يَـُٔودُهُۥ حِفْظُهُمَا ۚ وَهُوَ الْعَلِىُّ الْعَظِيمُ <span class="ayat-num">255</span>
       </div>
     </div>
 
@@ -574,19 +555,80 @@ body{
       </div>
     </div>
 
+    <!-- NAD E ALI — complete with gold styling -->
+    <div class="content-card" style="border-color:var(--gold-dim);">
+      <div class="content-title" style="color:var(--gold);">✨ ندِ علی — مکمل</div>
+      <div class="arabic-text" style="line-height:2.6;font-size:1.25rem;text-align:center;border-bottom:1px solid var(--border);padding-bottom:0.8rem;margin-bottom:0.8rem;">
+        بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
+      </div>
+      <div class="arabic-text" style="line-height:2.8;font-size:1.2rem;text-align:center;">
+        نَادِ عَلِيًّا مَظْهَرَ الْعَجَائِبِ<br>
+        تَجِدْهُ عَوْنًا لَكَ فِي النَّوَائِبِ<br>
+        كُلُّ هَمٍّ وَغَمٍّ سَيَنْجَلِي<br>
+        بِعَظَمَتِكَ يَا اللهُ وَبِنُبُوَّتِكَ يَا مُحَمَّدُ وَبِوِلَايَتِكَ يَا عَلِيُّ<br>
+        يَا عَلِيُّ يَا عَلِيُّ يَا عَلِيُّ<br>
+        اَللّٰهُمَّ صَلِّ عَلٰى مُحَمَّدٍ وَّعَلٰى آلِ مُحَمَّدٍ
+      </div>
+      <div style="text-align:center;margin-top:0.8rem;padding-top:0.6rem;border-top:1px solid var(--border);">
+        <span style="font-size:0.78rem;color:var(--text-dim);font-family:'Noto Nastaliq Urdu',serif;line-height:1.9;">
+          اللہ کی عظمت — نبیٔ کریم ﷺ کی نبوت — حضرت علیؓ کی ولایت<br>
+          کے وسیلے سے ہر مصیبت دور ہو
+        </span>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <div class="content-title">📖 سورۃ الواقعہ — مکمل</div>
+      <div class="arabic-text" style="font-size:1.1rem;">
+        بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ<br><br>
+        إِذَا وَقَعَتِ الْوَاقِعَةُ <span class="ayat-num">1</span> لَيْسَ لِوَقْعَتِهَا كَاذِبَةٌ <span class="ayat-num">2</span> خَافِضَةٌ رَّافِعَةٌ <span class="ayat-num">3</span> إِذَا رُجَّتِ الْأَرْضُ رَجًّا <span class="ayat-num">4</span> وَبُسَّتِ الْجِبَالُ بَسًّا <span class="ayat-num">5</span> فَكَانَتْ هَبَآءً مُّنبَثًّا <span class="ayat-num">6</span> وَكُنتُمْ أَزْوَٰجًا ثَلَٰثَةً <span class="ayat-num">7</span> فَأَصْحَٰبُ الْمَيْمَنَةِ مَآ أَصْحَٰبُ الْمَيْمَنَةِ <span class="ayat-num">8</span> وَأَصْحَٰبُ الْمَشْـَٔمَةِ مَآ أَصْحَٰبُ الْمَشْـَٔمَةِ <span class="ayat-num">9</span> وَالسَّٰبِقُونَ السَّٰبِقُونَ <span class="ayat-num">10</span> أُو۟لَٰٓئِكَ الْمُقَرَّبُونَ <span class="ayat-num">11</span> فِى جَنَّٰتِ النَّعِيمِ <span class="ayat-num">12</span> ثُلَّةٌ مِّنَ الْأَوَّلِينَ <span class="ayat-num">13</span> وَقَلِيلٌ مِّنَ الْآخِرِينَ <span class="ayat-num">14</span> عَلَىٰ سُرُرٍ مَّوْضُونَةٍ <span class="ayat-num">15</span> مُّتَّكِـِٔينَ عَلَيْهَا مُتَقَٰبِلِينَ <span class="ayat-num">16</span> يَطُوفُ عَلَيْهِمْ وِلْدَٰنٌ مُّخَلَّدُونَ <span class="ayat-num">17</span> بِأَكْوَابٍ وَأَبَارِيقَ وَكَأْسٍ مِّن مَّعِينٍ <span class="ayat-num">18</span> لَّا يُصَدَّعُونَ عَنْهَا وَلَا يُنزِفُونَ <span class="ayat-num">19</span> وَفَٰكِهَةٍ مِّمَّا يَتَخَيَّرُونَ <span class="ayat-num">20</span> وَلَحْمِ طَيْرٍ مِّمَّا يَشْتَهُونَ <span class="ayat-num">21</span> وَحُورٌ عِينٌ <span class="ayat-num">22</span> كَأَمْثَٰلِ اللُّؤْلُؤِ الْمَكْنُونِ <span class="ayat-num">23</span> جَزَآءًۢ بِمَا كَانُوا۟ يَعْمَلُونَ <span class="ayat-num">24</span> لَا يَسْمَعُونَ فِيهَا لَغْوًا وَلَا تَأْثِيمًا <span class="ayat-num">25</span> إِلَّا قِيلًا سَلَٰمًا سَلَٰمًا <span class="ayat-num">26</span> وَأَصْحَٰبُ الْيَمِينِ مَآ أَصْحَٰبُ الْيَمِينِ <span class="ayat-num">27</span> فِى سِدْرٍ مَّخْضُودٍ <span class="ayat-num">28</span> وَطَلْحٍ مَّنضُودٍ <span class="ayat-num">29</span> وَظِلٍّ مَّمْدُودٍ <span class="ayat-num">30</span> وَمَآءٍ مَّسْكُوبٍ <span class="ayat-num">31</span> وَفَٰكِهَةٍ كَثِيرَةٍ <span class="ayat-num">32</span> لَّا مَقْطُوعَةٍ وَلَا مَمْنُوعَةٍ <span class="ayat-num">33</span> وَفُرُشٍ مَّرْفُوعَةٍ <span class="ayat-num">34</span> إِنَّآ أَنشَأْنَٰهُنَّ إِنشَآءً <span class="ayat-num">35</span> فَجَعَلْنَٰهُنَّ أَبْكَارًا <span class="ayat-num">36</span> عُرُبًا أَتْرَابًا <span class="ayat-num">37</span> لِّأَصْحَٰبِ الْيَمِينِ <span class="ayat-num">38</span> ثُلَّةٌ مِّنَ الْأَوَّلِينَ <span class="ayat-num">39</span> وَثُلَّةٌ مِّنَ الْآخِرِينَ <span class="ayat-num">40</span> وَأَصْحَٰبُ الشِّمَالِ مَآ أَصْحَٰبُ الشِّمَالِ <span class="ayat-num">41</span> فِى سَمُومٍ وَحَمِيمٍ <span class="ayat-num">42</span> وَظِلٍّ مِّن يَحْمُومٍ <span class="ayat-num">43</span> لَّا بَارِدٍ وَلَا كَرِيمٍ <span class="ayat-num">44</span> إِنَّهُمْ كَانُوا۟ قَبْلَ ذَٰلِكَ مُتْرَفِينَ <span class="ayat-num">45</span> وَكَانُوا۟ يُصِرُّونَ عَلَى الْحِنثِ الْعَظِيمِ <span class="ayat-num">46</span> وَكَانُوا۟ يَقُولُونَ أَئِذَا مِتْنَا وَكُنَّا تُرَابًا وَعِظَٰمًا أَءِنَّا لَمَبْعُوثُونَ <span class="ayat-num">47</span> أَوَءَابَآؤُنَا الْأَوَّلُونَ <span class="ayat-num">48</span> قُلْ إِنَّ الْأَوَّلِينَ وَالْآخِرِينَ <span class="ayat-num">49</span> لَمَجْمُوعُونَ إِلَىٰ مِيقَٰتِ يَوْمٍ مَّعْلُومٍ <span class="ayat-num">50</span> ثُمَّ إِنَّكُمْ أَيُّهَا الضَّآلُّونَ الْمُكَذِّبُونَ <span class="ayat-num">51</span> لَآكِلُونَ مِن شَجَرٍ مِّن زَقُّومٍ <span class="ayat-num">52</span> فَمَالِـُٔونَ مِنْهَا الْبُطُونَ <span class="ayat-num">53</span> فَشَٰرِبُونَ عَلَيْهِ مِنَ الْحَمِيمِ <span class="ayat-num">54</span> فَشَٰرِبُونَ شُرْبَ الْهِيمِ <span class="ayat-num">55</span> هَٰذَا نُزُلُهُمْ يَوْمَ الدِّينِ <span class="ayat-num">56</span> نَحْنُ خَلَقْنَٰكُمْ فَلَوْلَا تُصَدِّقُونَ <span class="ayat-num">57</span> أَفَرَءَيْتُم مَّا تُمْنُونَ <span class="ayat-num">58</span> ءَأَنتُمْ تَخْلُقُونَهُۥٓ أَمْ نَحْنُ الْخَٰلِقُونَ <span class="ayat-num">59</span> نَحْنُ قَدَّرْنَا بَيْنَكُمُ الْمَوْتَ وَمَا نَحْنُ بِمَسْبُوقِينَ <span class="ayat-num">60</span> عَلَىٰٓ أَن نُّبَدِّلَ أَمْثَٰلَكُمْ وَنُنشِئَكُمْ فِى مَا لَا تَعْلَمُونَ <span class="ayat-num">61</span> وَلَقَدْ عَلِمْتُمُ النَّشْأَةَ الْأُولَىٰ فَلَوْلَا تَذَكَّرُونَ <span class="ayat-num">62</span> أَفَرَءَيْتُم مَّا تَحْرُثُونَ <span class="ayat-num">63</span> ءَأَنتُمْ تَزْرَعُونَهُۥٓ أَمْ نَحْنُ الزَّٰرِعُونَ <span class="ayat-num">64</span> لَوْ نَشَآءُ لَجَعَلْنَٰهُ حُطَٰمًا فَظَلْتُمْ تَفَكَّهُونَ <span class="ayat-num">65</span> إِنَّا لَمُغْرَمُونَ <span class="ayat-num">66</span> بَلْ نَحْنُ مَحْرُومُونَ <span class="ayat-num">67</span> أَفَرَءَيْتُمُ الْمَآءَ الَّذِى تَشْرَبُونَ <span class="ayat-num">68</span> ءَأَنتُمْ أَنزَلْتُمُوهُ مِنَ الْمُزْنِ أَمْ نَحْنُ الْمُنزِلُونَ <span class="ayat-num">69</span> لَوْ نَشَآءُ جَعَلْنَٰهُ أُجَاجًا فَلَوْلَا تَشْكُرُونَ <span class="ayat-num">70</span> أَفَرَءَيْتُمُ النَّارَ الَّتِى تُورُونَ <span class="ayat-num">71</span> ءَأَنتُمْ أَنشَأْتُمْ شَجَرَتَهَآ أَمْ نَحْنُ الْمُنشِـُٔونَ <span class="ayat-num">72</span> نَحْنُ جَعَلْنَٰهَا تَذْكِرَةً وَمَتَٰعًا لِّلْمُقْوِينَ <span class="ayat-num">73</span> فَسَبِّحْ بِاسْمِ رَبِّكَ الْعَظِيمِ <span class="ayat-num">74</span> فَلَآ أُقْسِمُ بِمَوَٰقِعِ النُّجُومِ <span class="ayat-num">75</span> وَإِنَّهُۥ لَقَسَمٌ لَّوْ تَعْلَمُونَ عَظِيمٌ <span class="ayat-num">76</span> إِنَّهُۥ لَقُرْءَانٌ كَرِيمٌ <span class="ayat-num">77</span> فِى كِتَٰبٍ مَّكْنُونٍ <span class="ayat-num">78</span> لَّا يَمَسُّهُۥٓ إِلَّا الْمُطَهَّرُونَ <span class="ayat-num">79</span> تَنزِيلٌ مِّن رَّبِّ الْعَٰلَمِينَ <span class="ayat-num">80</span> أَفَبِهَٰذَا الْحَدِيثِ أَنتُم مُّدْهِنُونَ <span class="ayat-num">81</span> وَتَجْعَلُونَ رِزْقَكُمْ أَنَّكُمْ تُكَذِّبُونَ <span class="ayat-num">82</span> فَلَوْلَآ إِذَا بَلَغَتِ الْحُلْقُومَ <span class="ayat-num">83</span> وَأَنتُمْ حِينَئِذٍ تَنظُرُونَ <span class="ayat-num">84</span> وَنَحْنُ أَقْرَبُ إِلَيْهِ مِنكُمْ وَلَٰكِن لَّا تُبْصِرُونَ <span class="ayat-num">85</span> فَلَوْلَآ إِن كُنتُمْ غَيْرَ مَدِينِينَ <span class="ayat-num">86</span> تَرْجِعُونَهَآ إِن كُنتُمْ صَٰدِقِينَ <span class="ayat-num">87</span> فَأَمَّآ إِن كَانَ مِنَ الْمُقَرَّبِينَ <span class="ayat-num">88</span> فَرَوْحٌ وَرَيْحَانٌ وَجَنَّتُ نَعِيمٍ <span class="ayat-num">89</span> وَأَمَّآ إِن كَانَ مِنْ أَصْحَٰبِ الْيَمِينِ <span class="ayat-num">90</span> فَسَلَٰمٌ لَّكَ مِنْ أَصْحَٰبِ الْيَمِينِ <span class="ayat-num">91</span> وَأَمَّآ إِن كَانَ مِنَ الْمُكَذِّبِينَ الضَّآلِّينَ <span class="ayat-num">92</span> فَنُزُلٌ مِّنْ حَمِيمٍ <span class="ayat-num">93</span> وَتَصْلِيَةُ جَحِيمٍ <span class="ayat-num">94</span> إِنَّ هَٰذَا لَهُوَ حَقُّ الْيَقِينِ <span class="ayat-num">95</span> فَسَبِّحْ بِاسْمِ رَبِّكَ الْعَظِيمِ <span class="ayat-num">96</span>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <div class="content-title">📖 سورۃ الملک — مکمل</div>
+      <div class="arabic-text" style="font-size:1.1rem;">
+        بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ<br><br>
+        تَبَٰرَكَ الَّذِى بِيَدِهِ الْمُلْكُ وَهُوَ عَلَىٰ كُلِّ شَىْءٍ قَدِيرٌ <span class="ayat-num">1</span> الَّذِى خَلَقَ الْمَوْتَ وَالْحَيَوٰةَ لِيَبْلُوَكُمْ أَيُّكُمْ أَحْسَنُ عَمَلًا ۚ وَهُوَ الْعَزِيزُ الْغَفُورُ <span class="ayat-num">2</span> الَّذِى خَلَقَ سَبْعَ سَمَٰوَٰتٍ طِبَاقًا ۖ مَّا تَرَىٰ فِى خَلْقِ الرَّحْمَٰنِ مِن تَفَٰوُتٍ ۖ فَارْجِعِ الْبَصَرَ هَلْ تَرَىٰ مِن فُطُورٍ <span class="ayat-num">3</span> ثُمَّ ارْجِعِ الْبَصَرَ كَرَّتَيْنِ يَنقَلِبْ إِلَيْكَ الْبَصَرُ خَاسِئًا وَهُوَ حَسِيرٌ <span class="ayat-num">4</span> وَلَقَدْ زَيَّنَّا السَّمَآءَ الدُّنْيَا بِمَصَٰبِيحَ وَجَعَلْنَٰهَا رُجُومًا لِّلشَّيَٰطِينِ ۖ وَأَعْتَدْنَا لَهُمْ عَذَابَ السَّعِيرِ <span class="ayat-num">5</span> وَلِلَّذِينَ كَفَرُوا۟ بِرَبِّهِمْ عَذَابُ جَهَنَّمَ ۖ وَبِئْسَ الْمَصِيرُ <span class="ayat-num">6</span> إِذَآ أُلْقُوا۟ فِيهَا سَمِعُوا۟ لَهَا شَهِيقًا وَهِىَ تَفُورُ <span class="ayat-num">7</span> تَكَادُ تَمَيَّزُ مِنَ الْغَيْظِ ۖ كُلَّمَآ أُلْقِىَ فِيهَا فَوْجٌ سَأَلَهُمْ خَزَنَتُهَآ أَلَمْ يَأْتِكُمْ نَذِيرٌ <span class="ayat-num">8</span> قَالُوا۟ بَلَىٰ قَدْ جَآءَنَا نَذِيرٌ فَكَذَّبْنَا وَقُلْنَا مَا نَزَّلَ اللَّهُ مِن شَىْءٍ إِنْ أَنتُمْ إِلَّا فِى ضَلَٰلٍ كَبِيرٍ <span class="ayat-num">9</span> وَقَالُوا۟ لَوْ كُنَّا نَسْمَعُ أَوْ نَعْقِلُ مَا كُنَّا فِىٓ أَصْحَٰبِ السَّعِيرِ <span class="ayat-num">10</span> فَاعْتَرَفُوا۟ بِذَنۢبِهِمْ فَسُحْقًا لِّأَصْحَٰبِ السَّعِيرِ <span class="ayat-num">11</span> إِنَّ الَّذِينَ يَخْشَوْنَ رَبَّهُم بِالْغَيْبِ لَهُم مَّغْفِرَةٌ وَأَجْرٌ كَبِيرٌ <span class="ayat-num">12</span> وَأَسِرُّوا۟ قَوْلَكُمْ أَوِ اجْهَرُوا۟ بِهِۦٓ ۖ إِنَّهُۥ عَلِيمٌ بِذَاتِ الصُّدُورِ <span class="ayat-num">13</span> أَلَا يَعْلَمُ مَنْ خَلَقَ وَهُوَ اللَّطِيفُ الْخَبِيرُ <span class="ayat-num">14</span> هُوَ الَّذِى جَعَلَ لَكُمُ الْأَرْضَ ذَلُولًا فَامْشُوا۟ فِى مَنَاكِبِهَا وَكُلُوا۟ مِن رِّزْقِهِۦ ۖ وَإِلَيْهِ النُّشُورُ <span class="ayat-num">15</span> ءَأَمِنتُم مَّن فِى السَّمَآءِ أَن يَخْسِفَ بِكُمُ الْأَرْضَ فَإِذَا هِىَ تَمُورُ <span class="ayat-num">16</span> أَمْ أَمِنتُم مَّن فِى السَّمَآءِ أَن يُرْسِلَ عَلَيْكُمْ حَاصِبًا ۖ فَسَتَعْلَمُونَ كَيْفَ نَذِيرِ <span class="ayat-num">17</span> وَلَقَدْ كَذَّبَ الَّذِينَ مِن قَبْلِهِمْ فَكَيْفَ كَانَ نَكِيرِ <span class="ayat-num">18</span> أَوَلَمْ يَرَوْا۟ إِلَى الطَّيْرِ فَوْقَهُمْ صَٰٓفَّٰتٍ وَيَقْبِضْنَ ۚ مَا يُمْسِكُهُنَّ إِلَّا الرَّحْمَٰنُ ۚ إِنَّهُۥ بِكُلِّ شَىْءٍ بَصِيرٌ <span class="ayat-num">19</span> أَمَّنْ هَٰذَا الَّذِى هُوَ جُندٌ لَّكُمْ يَنصُرُكُم مِّن دُونِ الرَّحْمَٰنِ ۚ إِنِ الْكَٰفِرُونَ إِلَّا فِى غُرُورٍ <span class="ayat-num">20</span> أَمَّنْ هَٰذَا الَّذِى يَرْزُقُكُمْ إِنْ أَمْسَكَ رِزْقَهُۥ ۚ بَل لَّجُّوا۟ فِى عُتُوٍّ وَنُفُورٍ <span class="ayat-num">21</span> أَفَمَن يَمْشِى مُكِبًّا عَلَىٰ وَجْهِهِۦٓ أَهْدَىٰٓ أَمَّن يَمْشِى سَوِيًّا عَلَىٰ صِرَٰطٍ مُّسْتَقِيمٍ <span class="ayat-num">22</span> قُلْ هُوَ الَّذِىٓ أَنشَأَكُمْ وَجَعَلَ لَكُمُ السَّمْعَ وَالْأَبْصَٰرَ وَالْأَفْـِٔدَةَ ۖ قَلِيلًا مَّا تَشْكُرُونَ <span class="ayat-num">23</span> قُلْ هُوَ الَّذِى ذَرَأَكُمْ فِى الْأَرْضِ وَإِلَيْهِ تُحْشَرُونَ <span class="ayat-num">24</span> وَيَقُولُونَ مَتَىٰ هَٰذَا الْوَعْدُ إِن كُنتُمْ صَٰدِقِينَ <span class="ayat-num">25</span> قُلْ إِنَّمَا الْعِلْمُ عِندَ اللَّهِ وَإِنَّمَآ أَنَا۠ نَذِيرٌ مُّبِينٌ <span class="ayat-num">26</span> فَلَمَّا رَأَوْهُ زُلْفَةً سِيٓـَٔتْ وُجُوهُ الَّذِينَ كَفَرُوا۟ وَقِيلَ هَٰذَا الَّذِى كُنتُم بِهِۦ تَدَّعُونَ <span class="ayat-num">27</span> قُلْ أَرَءَيْتُمْ إِنْ أَهْلَكَنِىَ اللَّهُ وَمَن مَّعِىَ أَوْ رَحِمَنَا فَمَن يُجِيرُ الْكَٰفِرِينَ مِنْ عَذَابٍ أَلِيمٍ <span class="ayat-num">28</span> قُلْ هُوَ الرَّحْمَٰنُ ءَامَنَّا بِهِۦ وَعَلَيْهِ تَوَكَّلْنَا ۖ فَسَتَعْلَمُونَ مَنْ هُوَ فِى ضَلَٰلٍ مُّبِينٍ <span class="ayat-num">29</span> قُلْ أَرَءَيْتُمْ إِنْ أَصْبَحَ مَآؤُكُمْ غَوْرًا فَمَن يَأْتِيكُم بِمَآءٍ مَّعِينٍۭ <span class="ayat-num">30</span>
+      </div>
+    </div>
+
   </div><!-- /tab-quran -->
+
 
   <!-- TAB: DUA -->
   <div class="tab-content" id="tab-dua">
     <div class="content-card">
-      <div class="content-title">🤲 صبح و شام کی دعائیں</div>
+      <div class="content-title">🤲 مسنون دعائیں</div>
+
+      <div style="font-size:0.72rem;color:var(--text-dim);font-family:'Noto Nastaliq Urdu',serif;margin-bottom:0.4rem;text-align:center;">صبح و شام</div>
       <div class="dua-tabs">
         <button class="dua-tab active" onclick="showDua(0)">صبح کی دعا</button>
         <button class="dua-tab" onclick="showDua(1)">شام کی دعا</button>
-        <button class="dua-tab" onclick="showDua(2)">آیت الکرسی</button>
-        <button class="dua-tab" onclick="showDua(3)">سونے کی دعا</button>
+        <button class="dua-tab" onclick="showDua(2)">صبح کا ذکر</button>
+        <button class="dua-tab" onclick="showDua(3)">شام کا ذکر</button>
+        <button class="dua-tab" onclick="showDua(4)">سیدالاستغفار</button>
       </div>
-      <div id="duaContent"></div>
+
+      <div style="font-size:0.72rem;color:var(--text-dim);font-family:'Noto Nastaliq Urdu',serif;margin:0.6rem 0 0.4rem;text-align:center;">روزمرہ کی دعائیں</div>
+      <div class="dua-tabs">
+        <button class="dua-tab" onclick="showDua(5)">اٹھنا + سونا</button>
+        <button class="dua-tab" onclick="showDua(6)">گھر — آنا جانا</button>
+        <button class="dua-tab" onclick="showDua(7)">کھانا — پہلے بعد</button>
+        <button class="dua-tab" onclick="showDua(8)">بیت الخلاء</button>
+        <button class="dua-tab" onclick="showDua(9)">مسجد — آنا جانا</button>
+        <button class="dua-tab" onclick="showDua(10)">سفر کی دعا</button>
+        <button class="dua-tab" onclick="showDua(11)">آئینہ دیکھنا</button>
+        <button class="dua-tab" onclick="showDua(12)">چھینک کی دعا</button>
+      </div>
+
+      <div style="font-size:0.72rem;color:var(--text-dim);font-family:'Noto Nastaliq Urdu',serif;margin:0.6rem 0 0.4rem;text-align:center;">رمضان — سحری و افطاری</div>
+      <div class="dua-tabs">
+        <button class="dua-tab" onclick="showDua(13)">سحری + افطاری</button>
+        <button class="dua-tab" onclick="showDua(14)">رمضان کی دعا</button>
+      </div>
+
+      <div id="duaContent" style="margin-top:0.8rem;"></div>
     </div>
   </div>
 
@@ -670,14 +712,93 @@ function fmtCD(ms){
 function karNow(){return new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Karachi'}));}
 
 // ── TABS ─────────────────────────────────────────────────────────────────────
-function switchTab(name){
+function switchTab(name,btn){
   document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('tab-'+name).classList.add('active');
-  event.target.classList.add('active');
+  btn.classList.add('active');
 }
 
-// ── HIJRI DATE ────────────────────────────────────────────────────────────────
+// ── WEATHER TOGGLE ────────────────────────────────────────────────────────────
+let weatherOpen=false;
+function toggleWeather(){
+  weatherOpen=!weatherOpen;
+  document.getElementById('weatherBody').style.display=weatherOpen?'block':'none';
+  document.getElementById('weatherToggleIcon').textContent=weatherOpen?'▲':'▼';
+  if(weatherOpen&&document.getElementById('weatherBody').innerHTML.includes('weather-loading')){
+    fetchWeather();
+  }
+}
+
+// ── DUA DATA ──────────────────────────────────────────────────────────────────
+const DUAS=[
+  // 0-4: صبح و شام
+  {title:'صبح کی دعا',
+   arabic:'اَللّٰهُمَّ بِكَ أَصْبَحْنَا وَبِكَ أَمْسَيْنَا وَبِكَ نَحْيَا وَبِكَ نَمُوْتُ وَإِلَيْكَ النُّشُوْرُ'},
+  {title:'شام کی دعا',
+   arabic:'اَللّٰهُمَّ بِكَ أَمْسَيْنَا وَبِكَ أَصْبَحْنَا وَبِكَ نَحْيَا وَبِكَ نَمُوْتُ وَإِلَيْكَ الْمَصِيْرُ'},
+  {title:'صبح کا ذکر — تین بار',
+   arabic:'أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ وَالْحَمْدُ لِلَّهِ لَآ إِلٰهَ إِلَّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ\n\nرَبِّ أَسْأَلُكَ خَيْرَ مَا فِيْ هٰذَا الْيَوْمِ وَخَيْرَ مَا بَعْدَهُ وَأَعُوذُ بِكَ مِنْ شَرِّ مَا فِيْ هٰذَا الْيَوْمِ وَشَرِّ مَا بَعْدَهُ'},
+  {title:'شام کا ذکر — تین بار',
+   arabic:'أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ وَالْحَمْدُ لِلَّهِ لَآ إِلٰهَ إِلَّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ\n\nرَبِّ أَسْأَلُكَ خَيْرَ مَا فِيْ هٰذِهِ اللَّيْلَةِ وَخَيْرَ مَا بَعْدَهَا وَأَعُوذُ بِكَ مِنْ شَرِّ مَا فِيْ هٰذِهِ اللَّيْلَةِ وَشَرِّ مَا بَعْدَهَا'},
+  {title:'سیدالاستغفار',
+   arabic:'اَللّٰهُمَّ أَنْتَ رَبِّيْ لَآ إِلٰهَ إِلَّا أَنْتَ خَلَقْتَنِيْ وَأَنَا عَبْدُكَ وَأَنَا عَلٰى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ وَأَبُوءُ بِذَنْبِيْ فَاغْفِرْ لِيْ فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ'},
+
+  // 5-12: روزمرہ — combined pairs
+  {title:'اٹھنے اور سونے کی دعا',
+   arabic:'🌅 صبح اٹھنے کی دعا\n\nاَلْحَمْدُ لِلَّهِ الَّذِيْ أَحْيَانَا بَعْدَ مَآ أَمَاتَنَا وَإِلَيْهِ النُّشُوْرُ\n\n\n🌙 سونے کی دعا\n\nبِاسْمِكَ اللّٰهُمَّ أَمُوتُ وَأَحْيَا'},
+  {title:'گھر — آنا اور جانا',
+   arabic:'🚪 گھر سے نکلنے کی دعا\n\nبِسْمِ اللهِ تَوَكَّلْتُ عَلَى اللهِ وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللهِ\n\n\n🏠 گھر میں داخل ہونے کی دعا\n\nبِسْمِ اللهِ وَلَجْنَا وَبِسْمِ اللهِ خَرَجْنَا وَعَلَى اللهِ رَبِّنَا تَوَكَّلْنَا'},
+  {title:'کھانا — پہلے اور بعد',
+   arabic:'🍽️ کھانے سے پہلے\n\nبِسْمِ اللهِ وَعَلَىٰ بَرَكَةِ اللهِ\n\n(اگر شروع میں بھول جائیں)\nبِسْمِ اللهِ فِيْ أَوَّلِهِ وَآخِرِهِ\n\n\n🤲 کھانے کے بعد\n\nاَلْحَمْدُ لِلَّهِ الَّذِيْ أَطْعَمَنَا وَسَقَانَا وَجَعَلَنَا مُسْلِمِيْنَ'},
+  {title:'بیت الخلاء — داخل و خارج',
+   arabic:'🚽 داخل ہوتے وقت\n\nاَللّٰهُمَّ إِنِّيْ أَعُوذُ بِكَ مِنَ الْخُبُثِ وَالْخَبَائِثِ\n\n\n✅ نکلتے وقت\n\nغُفْرَانَكَ'},
+  {title:'مسجد — آنا اور جانا',
+   arabic:'🕌 مسجد میں داخل ہوتے وقت\n\nاَللّٰهُمَّ افْتَحْ لِيْ أَبْوَابَ رَحْمَتِكَ\n\n\n🚶 مسجد سے نکلتے وقت\n\nاَللّٰهُمَّ إِنِّيْ أَسْأَلُكَ مِنْ فَضْلِكَ'},
+  {title:'سفر کی دعا',
+   arabic:'اَللهُ أَكْبَرُ اَللهُ أَكْبَرُ اَللهُ أَكْبَرُ\nسُبْحَانَ الَّذِيْ سَخَّرَ لَنَا هٰذَا وَمَا كُنَّا لَهُ مُقْرِنِيْنَ وَإِنَّا إِلٰى رَبِّنَا لَمُنْقَلِبُوْنَ\nاَللّٰهُمَّ إِنَّا نَسْأَلُكَ فِيْ سَفَرِنَا هٰذَا الْبِرَّ وَالتَّقْوٰى وَمِنَ الْعَمَلِ مَا تَرْضٰى'},
+  {title:'آئینہ دیکھنے کی دعا',
+   arabic:'اَللّٰهُمَّ أَنْتَ حَسَّنْتَ خَلْقِيْ فَحَسِّنْ خُلُقِيْ'},
+  {title:'چھینک کی دعا',
+   arabic:'😤 چھینکنے والا کہے\n\nاَلْحَمْدُ لِلَّهِ\n\n\n👂 سننے والا کہے\n\nيَرْحَمُكَ اللهُ\n\n\n🗣️ چھینکنے والا جواب میں کہے\n\nيَهْدِيْكُمُ اللهُ وَيُصْلِحُ بَالَكُمْ'},
+
+  // 13-14: رمضان
+  {title:'سحری اور افطاری کی دعا',
+   arabic:'🌙 سحری کی نیت\n\nوَبِصَوْمِ غَدٍ نَّوَيْتُ مِنْ شَهْرِ رَمَضَانَ\n\n\n🌅 افطاری کی دعا\n\nاَللّٰهُمَّ لَكَ صُمْتُ وَبِكَ آمَنْتُ وَعَلَيْكَ تَوَكَّلْتُ وَعَلٰى رِزْقِكَ أَفْطَرْتُ\n\n(افطار کرتے وقت)\nذَهَبَ الظَّمَأُ وَابْتَلَّتِ الْعُرُوقُ وَثَبَتَ الْأَجْرُ إِنْ شَاءَ اللهُ'},
+  {title:'رمضان میں کثرت سے پڑھیں',
+   arabic:'اَللّٰهُمَّ إِنَّكَ عَفُوٌّ كَرِيْمٌ تُحِبُّ الْعَفْوَ فَاعْفُ عَنِّيْ\n\n(خصوصاً طاق راتوں میں — لیلۃ القدر میں)'},
+];
+
+let activeDua=0;
+function showDua(idx){
+  activeDua=idx;
+  document.querySelectorAll('.dua-tab').forEach((t,i)=>t.classList.toggle('active',i===idx));
+  const d=DUAS[idx];
+  document.getElementById('duaContent').innerHTML=`
+    <div style="font-size:0.82rem;color:var(--gold);font-family:'Noto Nastaliq Urdu',serif;
+      text-align:center;margin-bottom:0.6rem;padding-bottom:0.4rem;
+      border-bottom:1px solid var(--border);">${d.title}</div>
+    <div class="arabic-text" style="white-space:pre-line;">${d.arabic}</div>`;
+}
+
+// ── MAKROOH TIMINGS (namaz mana hain) ────────────────────────────────────────
+function getMakroohTimes(times){
+  // 1. Ishraq se pehle: Sunrise ke waqt (±15 min)
+  const srMin=times.sunrise.h*60+times.sunrise.m;
+  const makrooh1Start=srMin-5, makrooh1End=srMin+15;
+  // 2. Zawaal: Zohar se ~20 min pehle (jab suraj sab se upar ho)
+  const dhMin=times.dhuhr.h*60+times.dhuhr.m;
+  const makrooh2Start=dhMin-15, makrooh2End=dhMin;
+  // 3. Gharoob: Maghrib (Sunset) ke waqt (±15 min pehle)
+  const mgMin=times.maghrib.h*60+times.maghrib.m;
+  const makrooh3Start=mgMin-15, makrooh3End=mgMin+5;
+  function mfmt(m){const mm=((m%1440)+1440)%1440;return fmt(Math.floor(mm/60),mm%60);}
+  return[
+    {label:'طلوعِ آفتاب کے وقت',time:`${mfmt(makrooh1Start)} — ${mfmt(makrooh1End)}`},
+    {label:'زوال کے وقت',       time:`${mfmt(makrooh2Start)} — ${mfmt(makrooh2End)}`},
+    {label:'غروبِ آفتاب کے وقت',time:`${mfmt(makrooh3Start)} — ${mfmt(makrooh3End)}`},
+  ];
+}
 const HIJRI_MONTHS=['Muharram','Safar','Rabi al-Awwal','Rabi al-Thani',
   'Jumada al-Awwal','Jumada al-Thani','Rajab','Shaaban',
   'Ramadan','Shawwal','Dhul Qadah','Dhul Hijjah'];
@@ -702,12 +823,8 @@ function updateRamadan(){
     const mon=parseInt(new Intl.DateTimeFormat('en-u-ca-islamic-umalqura',{month:'numeric',timeZone:'Asia/Karachi'}).format(now));
     const day=parseInt(new Intl.DateTimeFormat('en-u-ca-islamic-umalqura',{day:'numeric',timeZone:'Asia/Karachi'}).format(now));
     if(mon===9){
-      // Currently Ramadan
       const remaining=30-day;
-      document.getElementById('ramadanContent').innerHTML=`
-        <div class="ramadan-active">🌙 رمضان المبارک جاری ہے</div>
-        <div class="ramadan-days">${day}<span> / 30</span></div>
-        <div class="ramadan-sub">آج ${day}واں روزہ — ${remaining} دن باقی</div>`;
+      document.getElementById('ramadanContent').innerHTML=`<div class="ramadan-active" style="font-size:0.9rem;">🌙 ${day}واں روزہ — ${remaining} دن باقی</div>`;
     } else {
       // Calculate days to next Ramadan
       // Approximate: Ramadan is month 9, ~29.5 days/month
@@ -715,9 +832,7 @@ function updateRamadan(){
       if(mon<9) monthsLeft=9-mon;
       else monthsLeft=12-mon+9;
       const approxDays=Math.round(monthsLeft*29.5-day+1);
-      document.getElementById('ramadanContent').innerHTML=`
-        <div class="ramadan-days">${approxDays}<span> دن</span></div>
-        <div class="ramadan-sub">رمضان المبارک میں تقریباً ${approxDays} دن باقی ہیں</div>`;
+      document.getElementById('ramadanContent').innerHTML=`<div style="font-family:'Courier New',monospace;direction:ltr;color:var(--gold);font-size:1.1rem;font-weight:700;">${approxDays} <span style="font-size:0.75rem;color:var(--text-muted);">دن باقی</span></div>`;
     }
   }catch(e){
     document.getElementById('ramadanContent').innerHTML='<div class="ramadan-sub">معلومات دستیاب نہیں</div>';
@@ -754,6 +869,27 @@ function buildSections(){
     });
     container.appendChild(list);
   });
+
+  // ── Makrooh (namaz mana) timings ──
+  const msh=document.createElement('div');msh.className='section-head';
+  msh.innerHTML=`<span></span><span class="section-title" style="color:#e07840;">⛔ ناجائز اوقاتِ نماز</span><span></span>`;
+  container.appendChild(msh);
+  const mTimes=getMakroohTimes(times);
+  const mList=document.createElement('div');mList.className='prayers-list';
+  mTimes.forEach(m=>{
+    const mc=document.createElement('div');
+    mc.style.cssText='background:var(--bg-card);border:1px solid #3a2010;border-radius:14px;padding:0.65rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:0.7rem;box-shadow:0 2px 8px var(--shadow);';
+    mc.innerHTML=`
+      <div style="text-align:right;flex:1;">
+        <div style="font-size:1rem;font-weight:600;color:#f08050;font-family:'Noto Nastaliq Urdu',serif;">${m.label}</div>
+        <div style="font-size:0.7rem;color:var(--text-dim);font-family:'Noto Nastaliq Urdu',serif;margin-top:0.1rem;">اس وقت نفل نماز مکروہ ہے</div>
+      </div>
+      <div style="text-align:left;flex-shrink:0;">
+        <div style="font-size:1rem;font-weight:700;color:#e07840;font-family:'Courier New',monospace;direction:ltr;letter-spacing:0.03em;">${m.time}</div>
+      </div>`;
+    mList.appendChild(mc);
+  });
+  container.appendChild(mList);
 }
 
 // ── TICK ──────────────────────────────────────────────────────────────────────
@@ -851,62 +987,6 @@ function startCompass(){
   } else {
     listenCompass();
   }
-}
-
-function listenCompass(){
-  compassActive=true;
-  document.getElementById('qiblaNote').textContent='✅ کمپاس چالو — موبائل کو سیدھا رکھیں — سنہری تیر قبلے کی طرف ہے';
-  window.addEventListener('deviceorientationabsolute',handleOrientation,true);
-  window.addEventListener('deviceorientation',handleOrientation,true);
-}
-
-function handleOrientation(e){
-  let heading=0;
-  if(e.absolute&&e.alpha!=null){heading=360-e.alpha;}
-  else if(e.webkitCompassHeading!=null){heading=e.webkitCompassHeading;}
-  else if(e.alpha!=null){heading=360-e.alpha;}
-  // Rotate compass needle to show North
-  document.getElementById('compassNeedle').style.transform=`rotate(${heading}deg)`;
-  // Qibla arrow: QIBLA_BEARING - heading gives relative angle
-  const qAngle=(QIBLA_BEARING-heading+360)%360;
-  document.getElementById('qiblaArrow').style.transform=`rotate(${qAngle}deg)`;
-  document.getElementById('qiblaDeg').textContent=`${Math.round(qAngle)}° → قبلہ`;
-}
-
-// ── DUA DATA ──────────────────────────────────────────────────────────────────
-const DUAS=[
-  {
-    title:'صبح کی دعا',
-    arabic:'اَللّٰهُمَّ بِكَ أَصْبَحْنَا وَبِكَ أَمْسَيْنَا وَبِكَ نَحْيَا وَبِكَ نَمُوتُ وَإِلَيْكَ النُّشُورُ',
-    urdu:'اے اللہ! تیرے نام سے ہم نے صبح کی، تیرے نام سے شام کی، تیرے نام سے جیتے ہیں، تیرے نام سے مرتے ہیں اور تیری طرف ہی اٹھنا ہے۔'
-  },
-  {
-    title:'شام کی دعا',
-    arabic:'اَللّٰهُمَّ بِكَ أَمْسَيْنَا وَبِكَ أَصْبَحْنَا وَبِكَ نَحْيَا وَبِكَ نَمُوتُ وَإِلَيْكَ الْمَصِيرُ',
-    urdu:'اے اللہ! تیرے نام سے ہم نے شام کی، تیرے نام سے صبح کی، تیرے نام سے جیتے ہیں، تیرے نام سے مرتے ہیں اور تیری طرف ہی لوٹنا ہے۔'
-  },
-  {
-    title:'آیت الکرسی',
-    arabic:'اللَّهُ لَآ إِلَٰهَ إِلَّا هُوَ الْحَىُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُۥ سِنَةٌ وَلَا نَوْمٌ ۚ لَّهُۥ مَا فِى السَّمَٰوَٰتِ وَمَا فِى الْأَرْضِ ۗ مَن ذَا الَّذِى يَشْفَعُ عِندَهُۥٓ إِلَّا بِإِذْنِهِۦ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَىْءٍ مِّنْ عِلْمِهِۦٓ إِلَّا بِمَا شَآءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَٰوَٰتِ وَالْأَرْضَ ۖ وَلَا يَـُٔودُهُۥ حِفْظُهُمَا ۚ وَهُوَ الْعَلِىُّ الْعَظِيمُ',
-    urdu:'اللہ — کوئی معبود نہیں سوائے اس کے، زندہ، قائم رہنے والا۔ اسے نہ اونگھ آتی ہے نہ نیند۔ آسمانوں اور زمین میں جو کچھ ہے اسی کا ہے۔ کون ہے جو اس کے پاس اس کی اجازت کے بغیر سفارش کرے؟ وہ جانتا ہے جو ان کے سامنے ہے اور جو ان کے پیچھے ہے۔ وہ اس کے علم میں سے کسی چیز کا احاطہ نہیں کر سکتے سوائے اس کے جو وہ چاہے۔ اس کی کرسی آسمانوں اور زمین کو گھیرے ہوئے ہے۔ ان کی حفاظت اس پر بھاری نہیں اور وہ بلند عظیم ہے۔'
-  },
-  {
-    title:'سونے کی دعا',
-    arabic:'بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا',
-    urdu:'اے اللہ! تیرے نام پر مرتا ہوں اور تیرے نام پر جیتا ہوں۔'
-  }
-];
-
-let activeDua=0;
-function showDua(idx){
-  activeDua=idx;
-  document.querySelectorAll('.dua-tab').forEach((t,i)=>{
-    t.classList.toggle('active',i===idx);
-  });
-  const d=DUAS[idx];
-  document.getElementById('duaContent').innerHTML=`
-    <div class="arabic-text">${d.arabic}</div>
-    <div class="urdu-text">${d.urdu}</div>`;
 }
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
