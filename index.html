@@ -125,40 +125,39 @@ body{
 
 /* ── NEXT PRAYER ── */
 .next-prayer{
-  margin:0 1rem 0.8rem;
+  margin:0 1rem 0.6rem;
   background:linear-gradient(135deg,#1a7a4a,#0f5535);
-  border:1px solid var(--green-mid);border-radius:18px;
-  padding:1.1rem 1.3rem;display:flex;align-items:center;justify-content:space-between;
-  position:relative;overflow:hidden;box-shadow:0 6px 24px #1a7a4a25;
+  border:1px solid var(--green-mid);border-radius:14px;
+  padding:0.65rem 1.1rem;display:flex;align-items:center;justify-content:space-between;
+  position:relative;overflow:hidden;box-shadow:0 4px 16px #1a7a4a25;
 }
 .next-prayer::before{content:'';position:absolute;top:-40px;left:-40px;width:120px;height:120px;
   border-radius:50%;background:radial-gradient(circle,#ffffff15 0%,transparent 70%);pointer-events:none;}
 .next-right{flex:1;}
-.next-label{font-size:0.75rem;color:#9de0bc;font-family:'Noto Nastaliq Urdu',serif;margin-bottom:0.3rem;}
-.next-name{font-size:1.6rem;font-weight:700;color:#fff;line-height:1.3;}
-.next-arabic{font-family:'Scheherazade New',serif;font-size:1rem;color:#9de0bc;margin-top:0.1rem;}
+.next-label{font-size:0.65rem;color:#9de0bc;font-family:'Noto Nastaliq Urdu',serif;margin-bottom:0.15rem;}
+.next-name{font-size:1.25rem;font-weight:700;color:#fff;line-height:1.2;}
+.next-arabic{font-family:'Scheherazade New',serif;font-size:0.82rem;color:#9de0bc;margin-top:0.05rem;}
 .next-left{text-align:left;flex-shrink:0;}
-.cd-label{font-size:0.7rem;color:#9de0bc;font-family:'Noto Nastaliq Urdu',serif;text-align:center;margin-bottom:0.3rem;}
-.cd-time{font-size:2rem;font-weight:700;color:#fff;font-family:'Courier New',monospace;direction:ltr;letter-spacing:0.03em;}
+.cd-label{font-size:0.6rem;color:#9de0bc;font-family:'Noto Nastaliq Urdu',serif;text-align:center;margin-bottom:0.15rem;}
+.cd-time{font-size:1.45rem;font-weight:700;color:#fff;font-family:'Courier New',monospace;direction:ltr;letter-spacing:0.02em;}
 
 /* ── SI CARDS (Sehri/Iftari, Sunrise/Sunset) ── */
 .si-card{
-  margin:0 1rem 0.8rem;background:var(--bg-card);border:1px solid var(--border);
-  border-radius:18px;padding:0.9rem 1.1rem;display:flex;gap:0.5rem;
-  box-shadow:0 3px 14px var(--shadow);position:relative;overflow:hidden;
+  margin:0 1rem 0.6rem;background:var(--bg-card);border:1px solid var(--border);
+  border-radius:14px;padding:0.55rem 0.9rem;display:flex;gap:0.5rem;
+  box-shadow:0 2px 10px var(--shadow);position:relative;overflow:hidden;
 }
 .si-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
   background:linear-gradient(90deg,transparent,var(--green-dim),transparent);}
-.si-half{flex:1;text-align:center;padding:0.3rem 0.1rem;}
-.si-icon{font-size:1.4rem;margin-bottom:0.15rem;}
-.si-label{font-size:0.78rem;color:var(--text-muted);font-family:'Noto Nastaliq Urdu',serif;margin-bottom:0.1rem;line-height:1.5;}
-.si-arabic{font-family:'Scheherazade New',serif;font-size:0.8rem;color:var(--text-dim);margin-bottom:0.25rem;}
-.si-time{font-size:1.2rem;font-weight:700;font-family:'Courier New',monospace;direction:ltr;letter-spacing:0.04em;}
+.si-half{flex:1;text-align:center;padding:0.1rem 0.1rem;}
+.si-label{font-size:0.72rem;color:var(--text-muted);font-family:'Noto Nastaliq Urdu',serif;margin-bottom:0.05rem;line-height:1.4;}
+.si-arabic{font-family:'Scheherazade New',serif;font-size:0.7rem;color:var(--text-dim);margin-bottom:0.1rem;}
+.si-time{font-size:1rem;font-weight:700;font-family:'Courier New',monospace;direction:ltr;letter-spacing:0.03em;}
 .si-time.sehri{color:#7eb8f8;}
 .si-time.iftari{color:var(--gold);}
 .si-time.sunrise{color:#f5c040;}
 .si-time.sunset{color:#f08040;}
-.si-note{font-size:0.67rem;color:var(--text-dim);font-family:'Noto Nastaliq Urdu',serif;margin-top:0.15rem;}
+.si-note{font-size:0.6rem;color:var(--text-dim);font-family:'Noto Nastaliq Urdu',serif;margin-top:0.05rem;}
 .si-divider{width:1px;background:linear-gradient(180deg,transparent,var(--border),transparent);align-self:stretch;flex-shrink:0;}
 
 /* ── RAMADAN COUNTDOWN ── */
@@ -206,108 +205,38 @@ body{
 .weather-offline{text-align:center;padding:0.6rem;color:#f0a040;font-size:0.78rem;background:#f0a04010;border-radius:8px;border:1px solid #f0a04030;}
 
 /* ── SECTION HEAD ── */
-.section-head{display:flex;align-items:center;gap:0.5rem;margin:1.1rem 1rem 0.45rem;}
+.section-head{display:flex;align-items:center;gap:0.5rem;margin:0.8rem 1rem 0.35rem;}
 .section-head span{flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent);}
 .section-head span:last-child{background:linear-gradient(270deg,var(--border),transparent);}
-.section-title{font-size:0.82rem;color:var(--green);font-family:'Noto Nastaliq Urdu',serif;white-space:nowrap;}
+.section-title{font-size:0.78rem;color:var(--green);font-family:'Noto Nastaliq Urdu',serif;white-space:nowrap;}
 
 /* ── PRAYER CARDS ── */
-.prayers-list{margin:0 1rem;display:flex;flex-direction:column;gap:0.42rem;}
+.prayers-list{margin:0 1rem;display:flex;flex-direction:column;gap:0.35rem;}
 .prayer-card{
-  background:var(--bg-card);border:1px solid var(--border);border-radius:14px;
-  padding:0.7rem 1rem;display:flex;align-items:center;justify-content:space-between;
-  gap:0.7rem;transition:all 0.3s ease;position:relative;overflow:hidden;
-  box-shadow:0 2px 8px var(--shadow);
+  background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
+  padding:0.45rem 0.8rem;display:flex;align-items:center;justify-content:space-between;
+  gap:0.6rem;transition:all 0.3s ease;position:relative;overflow:hidden;
+  box-shadow:0 2px 6px var(--shadow);
 }
 .prayer-card::before{content:'';position:absolute;right:0;top:0;bottom:0;width:3px;
-  background:transparent;border-radius:0 14px 14px 0;transition:background 0.3s;}
+  background:transparent;border-radius:0 12px 12px 0;transition:background 0.3s;}
 .prayer-card.active{background:linear-gradient(135deg,#1a4a30,#0f3020);border-color:var(--green);box-shadow:0 4px 18px #3dd48020;}
 .prayer-card.active::before{background:var(--green);}
 .prayer-card.passed{opacity:0.45;filter:saturate(0.5);}
 .prayer-card.passed .prayer-time{text-decoration:line-through;text-decoration-color:var(--text-dim);}
 .p-name-block{flex:1;text-align:right;}
-.p-name{font-size:1.1rem;font-weight:600;color:var(--text-main);line-height:1.4;}
-.p-arabic{font-family:'Scheherazade New',serif;font-size:0.88rem;color:var(--text-muted);direction:rtl;}
-.p-type-badge{display:inline-block;font-size:0.65rem;padding:1px 7px;border-radius:20px;margin-top:0.2rem;font-family:'Noto Nastaliq Urdu',serif;}
+.p-name{font-size:0.95rem;font-weight:600;color:var(--text-main);line-height:1.3;}
+.p-arabic{font-family:'Scheherazade New',serif;font-size:0.78rem;color:var(--text-muted);direction:rtl;}
+.p-type-badge{display:inline-block;font-size:0.6rem;padding:0px 6px;border-radius:20px;margin-top:0.1rem;font-family:'Noto Nastaliq Urdu',serif;}
 .badge-farz{background:#f0c04015;color:var(--farz-col);border:1px solid #f0c04040;}
 .badge-nafl{background:#3dd48015;color:var(--nafl-col);border:1px solid #3dd48040;}
 .badge-sunnah{background:#7eb8f815;color:var(--sunnah-col);border:1px solid #7eb8f840;}
 .p-time-block{text-align:left;flex-shrink:0;}
-.prayer-time{font-size:1.2rem;font-weight:700;color:var(--green);font-family:'Courier New',monospace;direction:ltr;letter-spacing:0.04em;}
-.prayer-rakat{font-size:0.68rem;color:var(--text-dim);font-family:'Noto Nastaliq Urdu',serif;text-align:left;direction:ltr;margin-top:0.1rem;}
-.p-icon{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;background:var(--bg-mid);border:1px solid var(--border);}
+.prayer-time{font-size:1.05rem;font-weight:700;color:var(--green);font-family:'Courier New',monospace;direction:ltr;letter-spacing:0.03em;}
+.prayer-rakat{font-size:0.62rem;color:var(--text-dim);font-family:'Noto Nastaliq Urdu',serif;text-align:left;direction:ltr;margin-top:0.05rem;}
+.p-icon{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.95rem;flex-shrink:0;background:var(--bg-mid);border:1px solid var(--border);}
 
 /* ── QIBLA ── */
-.qibla-card{
-  margin:0 1rem 0.8rem;background:var(--bg-card);border:1px solid var(--border);
-  border-radius:18px;padding:1.2rem;box-shadow:0 3px 14px var(--shadow);
-  position:relative;overflow:hidden;text-align:center;
-}
-.qibla-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,transparent,var(--gold),transparent);}
-.qibla-title{font-size:0.9rem;color:var(--text-muted);font-family:'Noto Nastaliq Urdu',serif;margin-bottom:0.8rem;}
-.compass-wrap{position:relative;width:180px;height:180px;margin:0 auto 0.8rem;}
-.compass-ring{
-  width:180px;height:180px;border-radius:50%;
-  border:2px solid var(--border-green);
-  background:var(--bg-card2);
-  display:flex;align-items:center;justify-content:center;
-  position:relative;
-}
-.compass-ring::before{
-  content:'N';position:absolute;top:8px;left:50%;transform:translateX(-50%);
-  font-size:0.75rem;font-weight:700;color:var(--green);font-family:monospace;
-}
-.compass-ring::after{
-  content:'S';position:absolute;bottom:8px;left:50%;transform:translateX(-50%);
-  font-size:0.75rem;color:var(--text-dim);font-family:monospace;
-}
-.compass-e{position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:0.75rem;color:var(--text-dim);font-family:monospace;}
-.compass-w{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:0.75rem;color:var(--text-dim);font-family:monospace;}
-.compass-needle{
-  position:absolute;top:50%;left:50%;
-  width:4px;height:70px;margin-left:-2px;margin-top:-70px;
-  transform-origin:bottom center;
-  transition:transform 0.5s ease;
-}
-.needle-north{
-  width:0;height:0;
-  border-left:8px solid transparent;
-  border-right:8px solid transparent;
-  border-bottom:50px solid #e05040;
-  position:absolute;bottom:0;left:-6px;
-}
-.needle-south{
-  width:0;height:0;
-  border-left:8px solid transparent;
-  border-right:8px solid transparent;
-  border-top:20px solid var(--text-dim);
-  position:absolute;top:0;left:-6px;
-}
-.qibla-arrow{
-  position:absolute;top:50%;left:50%;
-  width:3px;height:60px;margin-left:-1.5px;margin-top:-60px;
-  transform-origin:bottom center;
-  transition:transform 0.5s ease;
-}
-.qibla-arrow-head{
-  width:0;height:0;
-  border-left:7px solid transparent;
-  border-right:7px solid transparent;
-  border-bottom:45px solid var(--gold);
-  position:absolute;bottom:0;left:-5.5px;
-  filter:drop-shadow(0 0 4px var(--gold));
-}
-.qibla-degree{font-size:1.3rem;font-weight:700;color:var(--gold);font-family:'Courier New',monospace;direction:ltr;}
-.qibla-sub{font-size:0.8rem;color:var(--text-muted);font-family:'Noto Nastaliq Urdu',serif;margin-top:0.3rem;}
-.qibla-btn{
-  margin-top:0.7rem;padding:0.5rem 1.2rem;
-  background:var(--green-mid);border:none;border-radius:20px;
-  color:#fff;font-family:'Noto Nastaliq Urdu',serif;font-size:0.85rem;
-  cursor:pointer;
-}
-.qibla-note{font-size:0.7rem;color:var(--text-dim);font-family:'Noto Nastaliq Urdu',serif;margin-top:0.5rem;line-height:1.6;}
-
 /* ── QURAN / DUA CARDS ── */
 .content-card{
   margin:0 1rem 0.8rem;background:var(--bg-card);border:1px solid var(--border);
@@ -398,6 +327,7 @@ body{
     <div class="clock-block">
       <div class="live-badge"><div class="live-dot"></div><span class="live-text">LIVE</span></div>
       <div class="live-clock" id="liveClock">--:--:--</div>
+      <div id="weatherMini" style="margin-top:0.3rem;text-align:left;font-family:'Courier New',monospace;direction:ltr;font-size:0.7rem;color:var(--text-muted);cursor:pointer;" onclick="fetchWeather()">⏳ ...</div>
     </div>
   </div>
 
@@ -427,7 +357,6 @@ body{
     <!-- Sehri / Iftari -->
     <div class="si-card">
       <div class="si-half">
-        <div class="si-icon">🌙</div>
         <div class="si-label">سحری کا وقت</div>
         <div class="si-arabic">وقتِ سحر</div>
         <div class="si-time sehri" id="sehriTime">--:--</div>
@@ -435,7 +364,6 @@ body{
       </div>
       <div class="si-divider"></div>
       <div class="si-half">
-        <div class="si-icon">🌅</div>
         <div class="si-label">افطاری کا وقت</div>
         <div class="si-arabic">وقتِ افطار</div>
         <div class="si-time iftari" id="iftariTime">--:--</div>
@@ -446,7 +374,6 @@ body{
     <!-- Sunrise / Sunset -->
     <div class="si-card" style="border-color:#3a3010;">
       <div class="si-half">
-        <div class="si-icon">🌄</div>
         <div class="si-label">طلوعِ آفتاب</div>
         <div class="si-arabic">وقتِ طلوع</div>
         <div class="si-time sunrise" id="sunriseTime">--:--</div>
@@ -454,7 +381,6 @@ body{
       </div>
       <div class="si-divider" style="background:linear-gradient(180deg,transparent,#3a3010,transparent);"></div>
       <div class="si-half">
-        <div class="si-icon">🌇</div>
         <div class="si-label">غروبِ آفتاب</div>
         <div class="si-arabic">وقتِ غروب</div>
         <div class="si-time sunset" id="sunsetTime">--:--</div>
@@ -471,18 +397,6 @@ body{
       <div id="ramadanContent" style="text-align:left;">
         <div class="ramadan-days" style="font-size:1.2rem;"><span>...</span></div>
       </div>
-    </div>
-
-    <!-- Weather — compact -->
-    <div class="weather-card" id="weatherCard" style="padding:0.7rem 1.2rem;">
-      <div class="weather-header" style="margin-bottom:0;cursor:pointer;" onclick="toggleWeather()">
-        <div class="weather-title">🌤️ کراچی موسم</div>
-        <div style="display:flex;align-items:center;gap:0.5rem;">
-          <div class="weather-updated" id="weatherUpdated">loading...</div>
-          <span id="weatherToggleIcon" style="color:var(--text-dim);font-size:0.8rem;">▼</span>
-        </div>
-      </div>
-      <div id="weatherBody" style="display:none;margin-top:0.7rem;"><div class="weather-loading">⏳ موسم آ رہا ہے...</div></div>
     </div>
 
     <!-- Prayer List -->
@@ -555,28 +469,6 @@ body{
       </div>
     </div>
 
-    <!-- NAD E ALI — complete with gold styling -->
-    <div class="content-card" style="border-color:var(--gold-dim);">
-      <div class="content-title" style="color:var(--gold);">✨ ندِ علی — مکمل</div>
-      <div class="arabic-text" style="line-height:2.6;font-size:1.25rem;text-align:center;border-bottom:1px solid var(--border);padding-bottom:0.8rem;margin-bottom:0.8rem;">
-        بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
-      </div>
-      <div class="arabic-text" style="line-height:2.8;font-size:1.2rem;text-align:center;">
-        نَادِ عَلِيًّا مَظْهَرَ الْعَجَائِبِ<br>
-        تَجِدْهُ عَوْنًا لَكَ فِي النَّوَائِبِ<br>
-        كُلُّ هَمٍّ وَغَمٍّ سَيَنْجَلِي<br>
-        بِعَظَمَتِكَ يَا اللهُ وَبِنُبُوَّتِكَ يَا مُحَمَّدُ وَبِوِلَايَتِكَ يَا عَلِيُّ<br>
-        يَا عَلِيُّ يَا عَلِيُّ يَا عَلِيُّ<br>
-        اَللّٰهُمَّ صَلِّ عَلٰى مُحَمَّدٍ وَّعَلٰى آلِ مُحَمَّدٍ
-      </div>
-      <div style="text-align:center;margin-top:0.8rem;padding-top:0.6rem;border-top:1px solid var(--border);">
-        <span style="font-size:0.78rem;color:var(--text-dim);font-family:'Noto Nastaliq Urdu',serif;line-height:1.9;">
-          اللہ کی عظمت — نبیٔ کریم ﷺ کی نبوت — حضرت علیؓ کی ولایت<br>
-          کے وسیلے سے ہر مصیبت دور ہو
-        </span>
-      </div>
-    </div>
-
     <div class="content-card">
       <div class="content-title">📖 سورۃ الواقعہ — مکمل</div>
       <div class="arabic-text" style="font-size:1.1rem;">
@@ -626,6 +518,11 @@ body{
       <div class="dua-tabs">
         <button class="dua-tab" onclick="showDua(13)">سحری + افطاری</button>
         <button class="dua-tab" onclick="showDua(14)">رمضان کی دعا</button>
+      </div>
+
+      <div style="font-size:0.72rem;color:var(--text-dim);font-family:'Noto Nastaliq Urdu',serif;margin:0.6rem 0 0.4rem;text-align:center;">خصوصی</div>
+      <div class="dua-tabs">
+        <button class="dua-tab" onclick="showDua(15)">✨ ندِ علی</button>
       </div>
 
       <div id="duaContent" style="margin-top:0.8rem;"></div>
@@ -719,17 +616,6 @@ function switchTab(name,btn){
   btn.classList.add('active');
 }
 
-// ── WEATHER TOGGLE ────────────────────────────────────────────────────────────
-let weatherOpen=false;
-function toggleWeather(){
-  weatherOpen=!weatherOpen;
-  document.getElementById('weatherBody').style.display=weatherOpen?'block':'none';
-  document.getElementById('weatherToggleIcon').textContent=weatherOpen?'▲':'▼';
-  if(weatherOpen&&document.getElementById('weatherBody').innerHTML.includes('weather-loading')){
-    fetchWeather();
-  }
-}
-
 // ── DUA DATA ──────────────────────────────────────────────────────────────────
 const DUAS=[
   // 0-4: صبح و شام
@@ -767,6 +653,10 @@ const DUAS=[
    arabic:'🌙 سحری کی نیت\n\nوَبِصَوْمِ غَدٍ نَّوَيْتُ مِنْ شَهْرِ رَمَضَانَ\n\n\n🌅 افطاری کی دعا\n\nاَللّٰهُمَّ لَكَ صُمْتُ وَبِكَ آمَنْتُ وَعَلَيْكَ تَوَكَّلْتُ وَعَلٰى رِزْقِكَ أَفْطَرْتُ\n\n(افطار کرتے وقت)\nذَهَبَ الظَّمَأُ وَابْتَلَّتِ الْعُرُوقُ وَثَبَتَ الْأَجْرُ إِنْ شَاءَ اللهُ'},
   {title:'رمضان میں کثرت سے پڑھیں',
    arabic:'اَللّٰهُمَّ إِنَّكَ عَفُوٌّ كَرِيْمٌ تُحِبُّ الْعَفْوَ فَاعْفُ عَنِّيْ\n\n(خصوصاً طاق راتوں میں — لیلۃ القدر میں)'},
+
+  // 15: ندِ علی
+  {title:'✨ ندِ علی — مکمل',
+   arabic:'بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ\n\n\nنَادِ عَلِيًّا مَظْهَرَ الْعَجَائِبِ\nتَجِدْهُ عَوْنًا لَكَ فِي النَّوَائِبِ\nكُلُّ هَمٍّ وَغَمٍّ سَيَنْجَلِي\nبِعَظَمَتِكَ يَا اللهُ وَبِنُبُوَّتِكَ يَا مُحَمَّدُ وَبِوِلَايَتِكَ يَا عَلِيُّ\nيَا عَلِيُّ يَا عَلِيُّ يَا عَلِيُّ\nاَللّٰهُمَّ صَلِّ عَلٰى مُحَمَّدٍ وَّعَلٰى آلِ مُحَمَّدٍ\n\n\nاللہ کی عظمت — نبیٔ کریم ﷺ کی نبوت — حضرت علیؓ کی ولایت کے وسیلے سے ہر مصیبت دور ہو'},
 ];
 
 let activeDua=0;
@@ -927,65 +817,19 @@ function tick(){
   });
 }
 
-// ── WEATHER ───────────────────────────────────────────────────────────────────
-const WMO_CODES={0:'صاف آسمان',1:'تقریباً صاف',2:'جزوی ابر',3:'흐린 آسمان',
-  45:'دھند',48:'دھند',51:'ہلکی بارش',53:'معتدل بارش',55:'تیز بارش',
-  61:'ہلکی بارش',63:'معتدل بارش',65:'تیز بارش',80:'بوندا باندی',81:'معتدل بارش',82:'تیز بارش',
-  95:'آندھی',96:'آندھی',99:'تیز آندھی'};
+// ── WEATHER (mini badge — temp + feels like) ─────────────────────────────────
 const WMO_EMOJI={0:'☀️',1:'🌤️',2:'⛅',3:'☁️',45:'🌫️',48:'🌫️',51:'🌦️',53:'🌧️',55:'🌧️',
   61:'🌦️',63:'🌧️',65:'🌧️',80:'🌦️',81:'🌧️',82:'⛈️',95:'⛈️',96:'⛈️',99:'⛈️'};
 async function fetchWeather(){
   try{
-    const r=await fetch('https://api.open-meteo.com/v1/forecast?latitude=24.8607&longitude=67.0011&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,wind_direction_10m,precipitation&wind_speed_unit=kmh&timezone=Asia%2FKarachi');
+    document.getElementById('weatherMini').textContent='⏳ ...';
+    const r=await fetch('https://api.open-meteo.com/v1/forecast?latitude=24.8607&longitude=67.0011&current=temperature_2m,apparent_temperature,weather_code&timezone=Asia%2FKarachi');
     const d=await r.json(),c=d.current;
-    const code=c.weather_code,emoji=WMO_EMOJI[code]||'🌡️',desc=WMO_CODES[code]||'نامعلوم';
+    const emoji=WMO_EMOJI[c.weather_code]||'🌡️';
     const temp=Math.round(c.temperature_2m),feels=Math.round(c.apparent_temperature);
-    const humid=c.relative_humidity_2m,wind=Math.round(c.wind_speed_10m);
-    const arrows=['↑','↗','→','↘','↓','↙','←','↖'];
-    const wa=arrows[Math.round(c.wind_direction_10m/45)%8];
-    document.getElementById('weatherBody').innerHTML=`
-      <div class="weather-main">
-        <div class="weather-icon-temp">
-          <div class="weather-emoji">${emoji}</div>
-          <div class="weather-temp">${temp}<sup>°C</sup></div>
-        </div>
-        <div class="weather-desc-block">
-          <div class="weather-desc">${desc}</div>
-          <div class="weather-feels">Feels like ${feels}°C</div>
-        </div>
-      </div>
-      <div class="weather-grid">
-        <div class="weather-stat"><div class="weather-stat-icon">💧</div><div class="weather-stat-val">${humid}%</div><div class="weather-stat-lbl">نمی</div></div>
-        <div class="weather-stat"><div class="weather-stat-icon">💨</div><div class="weather-stat-val">${wind} ${wa}</div><div class="weather-stat-lbl">ہوا km/h</div></div>
-        <div class="weather-stat"><div class="weather-stat-icon">🌧️</div><div class="weather-stat-val">${c.precipitation}mm</div><div class="weather-stat-lbl">بارش</div></div>
-      </div>`;
-    const n=karNow();
-    document.getElementById('weatherUpdated').textContent='Updated: '+n.toLocaleTimeString('en-PK',{hour:'2-digit',minute:'2-digit',hour12:true});
+    document.getElementById('weatherMini').textContent=`${emoji} ${temp}°C (feels ${feels}°C)`;
   }catch(e){
-    document.getElementById('weatherBody').innerHTML='<div class="weather-offline">📵 انٹرنیٹ نہیں — موسم دستیاب نہیں<br><small style="font-family:monospace;font-size:0.65rem">Tap to retry</small></div>';
-    document.getElementById('weatherCard').onclick=()=>{
-      document.getElementById('weatherBody').innerHTML='<div class="weather-loading">⏳ دوبارہ کوشش...</div>';
-      document.getElementById('weatherCard').onclick=null;fetchWeather();};
-  }
-}
-
-// ── QIBLA COMPASS ────────────────────────────────────────────────────────────
-// Karachi to Mecca: fixed bearing ~292° (NW)
-const QIBLA_BEARING = 292;
-let compassActive = false;
-
-function startCompass(){
-  if(typeof DeviceOrientationEvent==='undefined'){
-    document.getElementById('qiblaNote').textContent='آپ کے موبائل میں کمپاس دستیاب نہیں';return;
-  }
-  if(typeof DeviceOrientationEvent.requestPermission==='function'){
-    // iOS 13+
-    DeviceOrientationEvent.requestPermission().then(state=>{
-      if(state==='granted'){listenCompass();}
-      else{document.getElementById('qiblaNote').textContent='کمپاس کی اجازت نہیں ملی';}
-    });
-  } else {
-    listenCompass();
+    document.getElementById('weatherMini').textContent='📵 N/A';
   }
 }
 
